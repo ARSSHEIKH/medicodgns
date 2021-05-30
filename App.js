@@ -1,21 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import SplashScreen from "./Components/SplashScreen"
+import Login from "./Components/Login"
+// import Signup from "./Components/Signup"
+import Routes from "./Components/Routes"
 
+// "package": "com.mypackage.coolapp",
+// "googleServicesFile": "./google-services.json",
 export default function App() {
+  const [screen, setScreen] = React.useState(<SplashScreen />)
+
+  setTimeout(() => {
+    setScreen(<Routes />)
+  }, 5000);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {screen}
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
