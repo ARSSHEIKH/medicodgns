@@ -1,0 +1,6 @@
+
+@import "~react-image-gallery/styles/css/image-gallery.css";
+.dvImageGallery{
+    min-width: 60%;
+    height: auto;
+}

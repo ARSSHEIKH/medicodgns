@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, StatusBar, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Linking, SafeAreaView, Alert } from 'react-native';
 import { Checkbox, TextInput, Button } from 'react-native-paper';
 import DatePicker from 'react-native-datepicker';
-import { Link } from "react-router-native";
+import { Link, useHistory } from "react-router-native";
 import { firebaseConfig } from "../config"
 
 const showAlert = () =>
@@ -17,6 +17,7 @@ const showAlert = () =>
         ],
     );
 export default function Signup() {
+    const history = useHistory()
     const [checked, setChecked] = useState(false);
     const [emailErrorText, setEmailErrorText] = useState('*');
     const [passwordErrorText, setPasswordErrorText] = useState('*');
@@ -126,6 +127,13 @@ export default function Signup() {
                                             },
                                         ],
                                     );
+                                    // history.push("/VerificationPage")
+                                    Linking.openURL("https://medicodgns.web.app/VerificationPage")
+                                
+                                      return
+                                    // To apply the default browser preference instead of explicitly setting it.
+                                    // firebase.auth().useDeviceLanguage();
+
                                     // setRefForm(
                                     //   <div style={{ visibility: formDisabler }}>
                                     //     <h4>Please Verify Your Email Address to Process</h4>
@@ -280,8 +288,8 @@ const styles = StyleSheet.create({
     errorText: {
         color: "red"
     },
-    
-    btnSignUp:{
+
+    btnSignUp: {
         backgroundColor: "blue",
         // margin:10,
         marginLeft: 70,

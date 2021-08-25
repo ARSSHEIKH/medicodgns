@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, StatusBar, Linking } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { Link, useHistory } from "react-router-native";
 import { firebaseConfig as firebase } from "../config"
@@ -19,17 +19,15 @@ export default function Login() {
                 var starCountRef = firebase.database().ref(`medicalPatients/user${userCredential.user.uid}/verified`)
 
                 starCountRef.on('value', function (getVerified) {
-
                     const getVerification = getVerified.val();
-
                     if (getVerification === true) {
                         setEmailErrorText("Login Successfully")
+                        history.push("/Home")
                     }
                     else if (getVerification === false) {
-                        setEmailErrorText("Account is not Verified !! Wait ....")
-                        // Linking.openURL("http://localhost:3000/VerificationPage")
+                        setEmailErrorText("Account is not Verified !! Wait ....");
+                        Linking.openURL("https://medicodgns.web.app/VerificationPage");
                         // history.push("/VerificationPage")
-                        history.push("/Home")
                     }
                 })
                 setPasswordErrorText("")
@@ -157,9 +155,9 @@ const styles = StyleSheet.create({
     scrollView: {
         marginHorizontal: 5,
     },
-    btnLogin:{
+    btnLogin: {
         backgroundColor: "blue",
-        margin:20,
+        margin: 20,
         marginLeft: 30,
     }
 });

@@ -7,11 +7,10 @@ import Routes from "./Components/Routes"
 // "package": "com.mypackage.coolapp",
 // "googleServicesFile": "./google-services.json",
 export default function App() {
-  const [screen, setScreen] = React.useState(<SplashScreen />)
+  const [screen, setScreen] = React.useState(<Routes />)
+    
 
-  setTimeout(() => {
-    setScreen(<Routes />)
-  }, 5000);
+
   return (
     <>
       {screen}

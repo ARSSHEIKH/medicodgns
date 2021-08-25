@@ -1,9 +1,15 @@
 
 import { StyleSheet, Image, Text, View } from 'react-native';
+import { history, useHistory } from "react-router-native";
 import React from 'react';
-import loadingGif from "../assets/images/loadingGif1.gif";
 
 export default function SplashScreen() {
+  const history = useHistory()
+
+  setTimeout(() => {
+    history.push("/Login");
+  }, 2000);
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>
@@ -13,6 +19,7 @@ export default function SplashScreen() {
         source={require("../assets/images/loadingGif2.gif")}
         width="100"
       />
+      
     </View>
   );
 }
