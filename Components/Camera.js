@@ -15,7 +15,7 @@ const PendingView = () => (
   </View>
 );
 
-class ExampleApp extends PureComponent {
+class Camera extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
@@ -55,7 +55,7 @@ class ExampleApp extends PureComponent {
     const options = { quality: 0.5, base64: true };
     const data = await camera.takePictureAsync(options);
     //  eslint-disable-next-line
-    console.log(data.uri);
+    console.log("data.uri",data.uri);
   };
 }
 
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('App', () => ExampleApp);
+export default Camera;

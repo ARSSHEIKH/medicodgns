@@ -15,10 +15,11 @@ const Home = () => {
                     onPress={() => history.push("/ReportScanner")}
                 >
                     Upload Report
-            </Button>
+                </Button>
+
                 <Button mode="contained" style={styles.btnHistory} onPress={() => console.log('View History')}>
                     View History
-            </Button>
+                </Button>
 
                 <Link to="/"
                     style={styles.navItem}
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         top: 80
     },
-    
+
     navItem: {
         padding: 10
     },

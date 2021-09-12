@@ -3,10 +3,27 @@ import { Button, Image,Text, View, Platform, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useHistory } from "react-router-native";
 import { GetReportImage } from "./CreateReport"
+import RNTextDetector from "react-native-text-detector";
 
 export default function ImagePickerCompo() {
   let history = useHistory()
   const [image, setImage] = useState(null);
+
+  async function detectText() {
+    try {
+      const options = {
+        quality: 0.8,
+        base64: true,
+        skipProcessing: true,
+      };
+      const { uri } = await this.camera.takePictureAsync(options);
+      const visionResp = await RNTextDetector.detectFromUri(uri);
+      console.log('visionResp', visionResp);
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+   detectText()
   let imgFile;
   useEffect(() => {
     (async () => {
@@ -26,12 +43,11 @@ export default function ImagePickerCompo() {
       aspect: [4, 3],
       quality: 1,
     });
-    console.log(result.uri)
     if (!result.cancelled) {
       imgFile = result.uri
     }
       setImage(result.uri);
-      console.log("image : ",image)
+      console.log("image : ",result.uri);
   };
   return (
     <View>
@@ -39,8 +55,8 @@ export default function ImagePickerCompo() {
       {image && <Image source={{ uri: image }} style={{ width: 250, height: 300 }} resizeMode={'cover'}/>}
       <Text></Text>
       <Button title="Create Report" onPress={() => {
-        <GetReportImage imgFile={imgFile} />
-        history.push("/CreateReport")
+        // <GetReportImage imgFile={imgFile} />/
+        // history.push("/CreateReport")
       }} />
     </View>
   );
